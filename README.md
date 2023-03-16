@@ -21,3 +21,7 @@ In this program, the user is able to emulate the execution of the LCR and HS lea
 at' using 1:2 title 'WorstCase LCR' with lines, 'test.dat' using 1:2 title 'Random LCR' with lines, 'test.dat' using 3:4 title 'Random HS' 
 with lines"
 3) You can also enter: 'set xlabel "Number of Rounds"' and 'set ylabel "Number of Messages Sent"' if you want to see the labels 
+
+# Other Notes
+1) In each iteration, the program writes only 1 data value for the "best.dat" and "worst.dat", however for random it shuffles the Network 10 times so 10 data values go in for one iteration.
+2) For the sake of time, I recommend these input values: Starting number: 5 (should be at least 3), Step Count: 5, Max Amount: 1000 (Can go up to 2000 if you like).
