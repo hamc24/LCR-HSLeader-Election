@@ -6,7 +6,116 @@ import java.io.IOException;  // Import the IOException class to handle errors
 import java.util.*;
 
 public class Main {
+	
+	//Putting some repeating code here so that the main function
+	//Isn't too crowded
+	public static void createBestF() {
+		try {
+		      File myObj = new File("best.dat");
+		      if (myObj.createNewFile()) {
+		        System.out.println("File created: " + myObj.getName());
+		      } else {
+		        System.out.println("'best.dat' already exists.");
+		      }
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
+	public static void createWorstF() {
+		try {
+		      File myObj = new File("worst.dat");
+		      if (myObj.createNewFile()) {
+		        System.out.println("File created: " + myObj.getName());
+		      } else {
+		        System.out.println("'worst.dat' already exists.");
+		      }
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
+	public static void createTestF() {
+		try {
+		      File myObj = new File("test.dat");
+		      if (myObj.createNewFile()) {
+		        System.out.println("File created: " + myObj.getName());
+		      } else {
+		        System.out.println("'test.dat' already exists.");
+		      }
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
+	public static void initializeFiles(int LCRmsg, int HSmsg) {
+		//Writing initial values on the files
+				try {
+			      FileWriter myWriter = new FileWriter("best.dat");
+			      myWriter.write("0 " + LCRmsg + " 0 " + HSmsg);
+			      myWriter.close();
+			      System.out.println("Successfully wrote to the file.");
+			    } catch (IOException e) {
+			      System.out.println("An error occurred.");
+			      e.printStackTrace();
+			    }
+				
+				try {
+				      FileWriter myWriter = new FileWriter("worst.dat");
+				      myWriter.write("0 " + LCRmsg + " 0 " + HSmsg);
+				      myWriter.close();
+				      System.out.println("Successfully wrote to the file.");
+				    } catch (IOException e) {
+				      System.out.println("An error occurred.");
+				      e.printStackTrace();
+				    }
+				
+				try {
+				      FileWriter myWriter = new FileWriter("test.dat");
+				      myWriter.write("0 " + LCRmsg + " 0 " + HSmsg);
+				      myWriter.close();
+				      System.out.println("Successfully wrote to the file.");
+				    } catch (IOException e) {
+				      System.out.println("An error occurred.");
+				      e.printStackTrace();
+				    }
+	}
+	
+	public static void writeBestF(int LCRRound, int LCRmsg, int HSRound, int HSmsg) {
+		try {
+		      FileWriter myWriter = new FileWriter("best.dat", true);
+		      myWriter.write("\n" + LCRRound + " " + LCRmsg + " " + HSRound + " "+ HSmsg);
+		      myWriter.close();
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	public static void writeWorstF(int LCRRound, int LCRmsg, int HSRound, int HSmsg) {
+		try {
+		      FileWriter myWriter = new FileWriter("worst.dat", true);
+		      myWriter.write("\n" + LCRRound + " " + LCRmsg + " " + HSRound + " "+ HSmsg);
+		      myWriter.close();
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	public static void writeTestF(int LCRRound, int LCRmsg, int HSRound, int HSmsg) {
+		try {
+		      FileWriter myWriter = new FileWriter("test.dat", true);
+		      myWriter.write("\n" + LCRRound + " " + LCRmsg + " " + HSRound + " "+ HSmsg);
+		      myWriter.close();
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
 
+	//Start of main
 	public static void main(String[] args) {
 		int LCRRound = 0;
 		int HSRound = 0;
@@ -17,45 +126,14 @@ public class Main {
 		//Initial creation of the data files
 		//All data files hold 4 values in each line structured as follows:
 		//(Rounds of LCR, Messages sent in LCR, Rounds of HS, Messages sent in HS)
-		try {
-	      File myObj = new File("best.dat");
-	      if (myObj.createNewFile()) {
-	        System.out.println("File created: " + myObj.getName());
-	      } else {
-	        System.out.println("'best.dat' already exists.");
-	      }
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
+		createBestF();
+		createWorstF();
+		createTestF();
 		
-		try {
-	      File myObj = new File("worst.dat");
-	      if (myObj.createNewFile()) {
-	        System.out.println("File created: " + myObj.getName());
-	      } else {
-	        System.out.println("'worst.dat' already exists.");
-	      }
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
-		
-		try {
-	      File myObj = new File("test.dat");
-	      if (myObj.createNewFile()) {
-	        System.out.println("File created: " + myObj.getName());
-	      } else {
-	        System.out.println("'test.dat' already exists.");
-	      }
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
 		
 		//User-inputed values for starting # of processes
 		Scanner scan = new Scanner(System.in);
-	    System.out.print("Enter Starting amount of Processes: ");
+	    System.out.print("Enter Starting amount of Processes (at least 4 preferred): ");
 
 	    int numP = scan.nextInt();
 	    
@@ -74,36 +152,7 @@ public class Main {
 	   
 		Network test = new Network(numP);
 		
-		//Writing initial values on the files
-		try {
-	      FileWriter myWriter = new FileWriter("best.dat");
-	      myWriter.write("0 " + LCRmsg + " 0 " + HSmsg);
-	      myWriter.close();
-	      System.out.println("Successfully wrote to the file.");
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
-		
-		try {
-		      FileWriter myWriter = new FileWriter("worst.dat");
-		      myWriter.write("0 " + LCRmsg + " 0 " + HSmsg);
-		      myWriter.close();
-		      System.out.println("Successfully wrote to the file.");
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-		
-		try {
-		      FileWriter myWriter = new FileWriter("test.dat");
-		      myWriter.write("0 " + LCRmsg + " 0 " + HSmsg);
-		      myWriter.close();
-		      System.out.println("Successfully wrote to the file.");
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
+		initializeFiles(LCRmsg, HSmsg);
 		
 		//Running both algorithms and getting the Best, Worst and Random samples.
 		while(test.size() <= maxP) {
@@ -116,14 +165,7 @@ public class Main {
 			HSRound = test.round;
 			totSimulation += 2;
 			
-			try {
-		      FileWriter myWriter = new FileWriter("best.dat", true);
-		      myWriter.write("\n" + LCRRound + " " + LCRmsg + " " + HSRound + " "+ HSmsg);
-		      myWriter.close();
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
+			writeBestF(LCRRound, LCRmsg, HSRound, HSmsg);
 			
 			//Testing for reversed sorted network
 			test.reverse();
@@ -135,16 +177,9 @@ public class Main {
 			totSimulation += 2;
 			
 			
-			try {
-		      FileWriter myWriter = new FileWriter("worst.dat", true);
-		      myWriter.write("\n" + LCRRound + " " + LCRmsg + " " + HSRound + " "+ HSmsg);
-		      myWriter.close();
-			} catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
+			writeWorstF(LCRRound, LCRmsg, HSRound, HSmsg);
 			
-			for(int i = 0; i < 10; i++) {
+			for(int i = 0; i < 20; i++) {
 				//Testing for randomized network
 				test.shuffleNetwork();
 				LCRmsg = test.LCRElectLeader();
@@ -154,14 +189,7 @@ public class Main {
 				HSRound = test.round;
 				totSimulation += 2;
 				
-				try {
-			      FileWriter myWriter = new FileWriter("test.dat", true);
-			      myWriter.write("\n" + LCRRound + " " + LCRmsg + " " + HSRound + " "+ HSmsg);
-			      myWriter.close();
-				} catch (IOException e) {
-			      System.out.println("An error occurred.");
-			      e.printStackTrace();
-			    }
+				writeTestF(LCRRound, LCRmsg, HSRound, HSmsg);
 			}
 			
 			for(int i = 1; i < numStep + 1; i++) {

@@ -5,14 +5,14 @@ public class Process {
 	//For clockwise msg sending
 	int sendID;
 	int inID;
-	int sendDir;
-	int inDir; // 0 will represent out, 1 will represent in.
+	int sendDir;// 0 will represent out, 1 will represent in.
+	int inDir; 
 	int sendHop;
 	int inHop;
 	//For Counter-Clockwise msg sending
 	int sendCCID;
 	int inCCID;
-	int sendCCDir;
+	int sendCCDir; // 0 will represent out, 1 will represent in.
 	int inCCDir;
 	int sendCCHop;
 	int inCCHop;
@@ -154,6 +154,7 @@ public class Process {
 		}
 	}
 	
+	//Method for single process execution of the HS algorithm
 	public void HSSend() {
 		if(send && sendCC) {
 			next.inCCID = sendID;
